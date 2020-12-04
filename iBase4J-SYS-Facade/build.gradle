@@ -1,0 +1,4 @@
+dependencies {
+    implementation "com.baomidou:mybatis-plus-annotation:${mybatis_plus_version}"
+    implementation "io.swagger:swagger-annotations:${swagger_version}"
+}

@@ -1,0 +1,14 @@
+dependencies {
+    compile project(':iBase4J-Biz-Facade')
+    compile project(':iBase4J-SYS-Facade')
+
+    implementation "org.springframework:spring-webmvc"
+    implementation "org.apache.shiro:shiro-spring:${shiro_version}"
+    implementation "jstl:jstl:1.2"
+    implementation "org.dom4j:dom4j:2.1.0"
+    implementation "net.coobird:thumbnailator:${thumbnailator_version}"
+    implementation "com.jcraft:jsch:${jsch_version}"
+    implementation "io.springfox:springfox-swagger2:${springfox_version}"
+    implementation "io.springfox:springfox-swagger-ui:${springfox_version}"
+
+}

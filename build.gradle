@@ -1,0 +1,182 @@
+//  https://gitee.com/iBase4J/iBase4J.git
+group 'org.ibase4j'
+version '1.3.0'
+
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    sourceCompatibility = targetJavaVersion
+    targetCompatibility = targetJavaVersion
+
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    configurations {
+        all*.exclude group: 'commons-logging'
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    ext {
+        spring_boot_version = "2.1.1.RELEASE"
+
+        ibase4j_version = "3.7.5"
+        spring_version = "5.1.5.RELEASE"
+        spring_data_redis_version = "2.0.8.RELEASE"
+        mysql_version = "8.0.11"
+        sharding_jdbc_version = "1.4.1"
+        mybatis_version = "3.5.0"
+        mybatis_spring_version = "2.0.0"
+        mybatis_plus_version = "3.0.7.1"
+        slf4j_version = "1.7.25"
+        log4j_version = "2.11.0"
+        druid_version = "1.1.12"
+        dubbo_version = "2.7.1"
+        fastjson_version = "1.2.55"
+        motan_version = "1.1.1"
+        lettuce_version = "5.0.4.RELEASE"
+        okhttp_version = "3.10.0"
+        mail_version = "1.6.1"
+        redisson_version = "3.5.6"
+        poi_version = "3.17"
+        jxl_version = "2.6.12"
+        xfire_version = "1.2.6"
+        jsch_version = "0.1.54"
+        zxing_version = "3.3.2"
+        jackson_version = "2.9.5"
+        zookeeper_version = "3.4.12"
+        shiro_version = "1.4.0"
+        quartz_version = "2.3.0"
+        aspectj_version = "1.9.1"
+        pinyin4j_version = "2.5.1"
+        activemq_version = "5.13.3"
+        jsqlparser_version = "0.9.5"
+        springfox_version = "2.6.1"
+        swagger_version = "1.5.18"
+        thumbnailator_version = "0.4.8"
+        javassist_version = "3.22.0-GA"
+    }
+
+    dependencies {
+        implementation(platform('org.springframework.boot:spring-boot-dependencies:2.1.3.RELEASE')) {
+            exclude group: "org.apache.logging.log4j", module: "log4j-slf4j-impl"
+            exclude group: "org.slf4j", module: "slf4j-log4j12"
+            exclude group: "ch.qos.logback", module: "logback-classic"
+        }
+
+        implementation("top.ibase4j:ibase4j-common:${ibase4j_version}") {
+            exclude group: "org.apache.logging.log4j", module: "log4j-slf4j-impl"
+            exclude group: "org.apache.zookeeper", module: "zookeeper"
+        }
+
+        implementation "com.alipay.sofa:hessian:3.3.3"
+        implementation "commons-net:commons-net:3.6"
+        implementation "org.apache.commons:commons-lang3"
+        implementation "commons-codec:commons-codec"
+        implementation "commons-digester:commons-digester:2.1"
+        implementation "commons-beanutils:commons-beanutils:1.9.3"
+        implementation "commons-fileupload:commons-fileupload:1.3.3"
+        implementation "commons-io:commons-io:2.6"
+        implementation "org.apache.commons:commons-pool2"
+        implementation "commons-httpclient:commons-httpclient:3.0"
+        implementation("org.springframework.boot:spring-boot-starter") {
+            exclude group: "ch.qos.logback"
+            exclude group: "org.apache.logging.log4j"
+        }
+
+        implementation "org.springframework.boot:spring-boot-starter-tomcat"
+        implementation "org.springframework:spring-context"
+        implementation "org.springframework:spring-web"
+        implementation "org.springframework:spring-aspects"
+        implementation("org.springframework.data:spring-data-redis") {
+            exclude group: "ch.qos.logback"
+            exclude group: "org.apache.logging.log4j"
+        }
+        implementation "io.netty:netty-common"
+        implementation "io.netty:netty-codec"
+        implementation "io.netty:netty-buffer"
+        implementation "io.netty:netty-transport"
+        implementation "io.netty:netty-handler"
+        implementation "io.netty:netty-resolver-dns"
+        implementation "io.netty:netty-codec-dns"
+        implementation "io.lettuce:lettuce-core"
+        implementation "org.redisson:redisson:${redisson_version}"
+        implementation "com.alibaba:fastjson:${fastjson_version}"
+        implementation "javax.servlet:javax.servlet-api"
+
+        implementation "javax.mail:javax.mail-api"
+        implementation "com.lmax:disruptor:3.4.2"
+        implementation "org.apache.dubbo:dubbo:${dubbo_version}"
+        implementation "com.alibaba.spring:spring-context-support:1.0.2"
+        implementation "com.101tec:zkclient:0.11"
+        implementation "org.apache.curator:curator-recipes:4.2.0"
+        implementation("org.apache.zookeeper:zookeeper:${zookeeper_version}") {
+            exclude group: "log4j"
+            exclude group: "org.slf4j"
+            exclude group: "org.apache.logging.log4j"
+        }
+        implementation "com.fasterxml.jackson.core:jackson-core"
+        implementation "com.fasterxml.jackson.core:jackson-databind"
+        implementation "com.fasterxml.jackson.core:jackson-annotations"
+        implementation "com.belerweb:pinyin4j:${pinyin4j_version}"
+        implementation("com.luhuiguo:fastdfs-client:0.4.0"){
+            exclude group: "ch.qos.logback", module: "logback-classic"
+        }
+        implementation "org.apache.httpcomponents:httpclient"
+        implementation "com.squareup.okhttp3:okhttp:3.13.1"
+        implementation "org.dom4j:dom4j:2.1.1"
+        implementation "com.google.guava:guava:28.0-jre"
+
+
+        compileOnly "org.projectlombok:lombok:1.18.12"
+        annotationProcessor "org.projectlombok:lombok:1.18.12"
+        testCompileOnly "org.projectlombok:lombok:1.18.12"
+        testAnnotationProcessor "org.projectlombok:lombok:1.18.12"
+
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+
+        implementation("javax.jms:jms:1.1")
+        implementation("javax.jms:javax.jms-api:2.0.1")
+        implementation("org.apache.ws.commons:XmlSchema:1.1")
+        implementation("org.apache.ws.commons.schema:XmlSchema:1.4.7")
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+            resources {
+                srcDirs = ['src/main/java', 'src/main/webapp', 'src/main/resources']
+            }
+        }
+    }
+
+    jar {
+        manifest {
+            attributes("provider": "Gradle")
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "https://repository.jboss.org/nexus/content/groups/public" }
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "http://maven.aliyun.com/repository/public"
+            metadataSources {
+                artifact() //Look directly for artifact
+            }
+        }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    }
+    defaultTasks 'clean', 'build', 'assemble'
+}

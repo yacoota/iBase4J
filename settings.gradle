@@ -1,0 +1,8 @@
+rootProject.name = 'iBase4J'
+include 'iBase4J-Biz-Facade'
+include 'iBase4J-Biz-Service'
+include 'iBase4J-Biz-Web'
+include 'iBase4J-SYS-Facade'
+include 'iBase4J-SYS-Service'
+include 'iBase4J-SYS-Web'
+
