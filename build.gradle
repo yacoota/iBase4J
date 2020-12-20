@@ -1,4 +1,5 @@
 //  https://gitee.com/iBase4J/iBase4J.git
+
 group 'org.ibase4j'
 version '1.3.0'
 
